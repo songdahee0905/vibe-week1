@@ -6,12 +6,15 @@
 <title>바이브 코딩 2주차 실습</title>
 <style>
   :root {
-    --dongduk-pink: #e6007e;
-    --dongduk-pink-dark: #b8005f;
-    --dongduk-pink-light: #ffe6f2;
-    --text-dark: #2b2b2b;
-    --text-gray: #6b6b6b;
-    --bg: #fffafc;
+    --pink-1: #ff4fb0;
+    --pink-2: #e6007e;
+    --pink-3: #b8005f;
+    --pink-4: #7a0040;
+    --pink-light: #ffe6f2;
+    --pink-glow: #ffd1ea;
+    --text-dark: #33121f;
+    --text-gray: #7a5a68;
+    --bg: #fff6fb;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,227 +23,360 @@
     font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
     background: var(--bg);
     color: var(--text-dark);
-    line-height: 1.6;
+    line-height: 1.7;
+    overflow-x: hidden;
   }
 
+  /* ---------- Header ---------- */
   header {
-    background: linear-gradient(135deg, var(--dongduk-pink) 0%, var(--dongduk-pink-dark) 100%);
-    color: #fff;
-    padding: 60px 20px 70px;
-    text-align: center;
     position: relative;
+    background: linear-gradient(120deg, var(--pink-1), var(--pink-2) 45%, var(--pink-3) 100%);
+    color: #fff;
+    padding: 80px 20px 110px;
+    text-align: center;
     overflow: hidden;
+  }
+
+  header .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.45;
+    animation: float 9s ease-in-out infinite;
+  }
+  header .blob.b1 { width: 220px; height: 220px; background: #fff; top: -60px; left: -60px; animation-delay: 0s; }
+  header .blob.b2 { width: 160px; height: 160px; background: var(--pink-glow); bottom: -40px; right: 5%; animation-delay: 2s; }
+  header .blob.b3 { width: 100px; height: 100px; background: #fff; top: 30%; right: 20%; animation-delay: 4s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-18px) scale(1.06); }
   }
 
   header::after {
     content: "";
     position: absolute;
-    bottom: -40px;
+    bottom: -1px;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 90px;
     background: var(--bg);
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   }
 
   .badge {
+    position: relative;
+    z-index: 1;
     display: inline-block;
-    background: rgba(255,255,255,0.2);
-    padding: 6px 16px;
+    background: rgba(255,255,255,0.22);
+    backdrop-filter: blur(4px);
+    padding: 7px 18px;
     border-radius: 999px;
     font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+    border: 1px solid rgba(255,255,255,0.4);
   }
 
   header h1 {
-    font-size: 2.4rem;
-    font-weight: 800;
-    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    font-size: 2.7rem;
+    font-weight: 900;
+    margin-bottom: 14px;
+    text-shadow: 0 4px 24px rgba(122, 0, 64, 0.35);
+    letter-spacing: -0.01em;
   }
 
   header p {
-    font-size: 1.05rem;
-    opacity: 0.92;
+    position: relative;
+    z-index: 1;
+    font-size: 1.08rem;
+    opacity: 0.95;
   }
 
+  /* ---------- Nav ---------- */
   nav.top-nav {
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
-    padding: 20px 24px 0;
+    padding: 22px 24px 0;
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
   }
 
   nav.top-nav a {
     text-decoration: none;
-    color: var(--dongduk-pink-dark);
+    color: #fff;
     font-weight: 700;
     font-size: 0.9rem;
-    padding: 8px 16px;
+    padding: 10px 22px;
     border-radius: 999px;
-    border: 1.5px solid var(--dongduk-pink-light);
-    background: #fff;
-    transition: background 0.15s ease;
+    background: linear-gradient(120deg, var(--pink-2), var(--pink-3));
+    box-shadow: 0 8px 20px rgba(230, 0, 126, 0.35);
+    transition: transform 0.15s ease;
   }
 
-  nav.top-nav a:hover {
-    background: var(--dongduk-pink-light);
-  }
+  nav.top-nav a:hover { transform: translateY(-2px); }
 
   main {
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
-    padding: 20px 24px 80px;
+    padding: 10px 24px 90px;
   }
 
-  .toc {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    margin-bottom: 60px;
+  /* ---------- Flow TOC ---------- */
+  .flow-toc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 36px 0 60px;
   }
 
-  .toc a {
-    display: block;
-    background: #fff;
-    border: 1.5px solid var(--dongduk-pink-light);
-    border-radius: 14px;
-    padding: 18px;
-    text-align: center;
+  .flow-toc a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
     text-decoration: none;
-    color: var(--dongduk-pink-dark);
+    color: var(--pink-3);
     font-weight: 700;
-    font-size: 0.95rem;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    font-size: 0.88rem;
+    width: 110px;
+    text-align: center;
   }
 
-  .toc a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(230, 0, 126, 0.15);
-    background: var(--dongduk-pink-light);
+  .flow-toc a .circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-1), var(--pink-2));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 8px 18px rgba(230, 0, 126, 0.3);
+    transition: transform 0.15s ease;
   }
 
-  .toc a .num {
-    display: block;
-    font-size: 1.6rem;
-    margin-bottom: 6px;
+  .flow-toc a:hover .circle { transform: scale(1.1); }
+
+  .flow-toc .arrow {
+    color: var(--pink-1);
+    font-size: 1.4rem;
+    opacity: 0.6;
+    margin: 0 2px;
+    transform: translateY(-14px);
   }
 
+  /* ---------- Sections ---------- */
   section {
-    background: #fff;
-    border-radius: 18px;
-    padding: 32px 28px;
-    margin-bottom: 24px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    border-left: 6px solid var(--dongduk-pink);
+    position: relative;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 22px;
+    padding: 34px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 10px 30px rgba(184, 0, 95, 0.08);
+    border: 1px solid var(--pink-light);
     scroll-margin-top: 20px;
   }
 
   section h2 {
-    color: var(--dongduk-pink-dark);
-    font-size: 1.4rem;
-    margin-bottom: 14px;
+    color: var(--pink-3);
+    font-size: 1.45rem;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
 
-  section h2 .step {
-    background: var(--dongduk-pink);
+  section h2 .icon {
+    background: linear-gradient(135deg, var(--pink-1), var(--pink-3));
     color: #fff;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     flex-shrink: 0;
+    box-shadow: 0 6px 14px rgba(230, 0, 126, 0.28);
   }
 
-  section p, section li {
+  section p { color: var(--text-gray); font-size: 0.98rem; }
+
+  section > p:first-of-type { margin-bottom: 4px; }
+
+  /* connecting note between sections */
+  .link-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--pink-2);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin: -10px 0 22px 4px;
+  }
+  .link-note::before { content: "↳"; font-size: 1.1rem; }
+
+  section ul.chip-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  section ul.chip-list li {
+    background: var(--pink-light);
+    color: var(--pink-3);
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+
+  /* ---------- Timeline for 실습 내용 ---------- */
+  .timeline { position: relative; margin-top: 20px; padding-left: 34px; }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--pink-1), var(--pink-3));
+    border-radius: 3px;
+  }
+
+  .timeline .stage { position: relative; margin-bottom: 26px; }
+  .timeline .stage:last-child { margin-bottom: 0; }
+
+  .timeline .stage::before {
+    content: "";
+    position: absolute;
+    left: -34px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 4px solid var(--pink-2);
+    box-shadow: 0 0 0 4px var(--pink-light);
+  }
+
+  .timeline .stage .stage-title {
+    font-weight: 800;
+    color: var(--pink-3);
+    font-size: 1.02rem;
+    margin-bottom: 4px;
+  }
+
+  .timeline .stage .stage-desc {
     color: var(--text-gray);
-    font-size: 0.98rem;
+    font-size: 0.92rem;
   }
 
-  section ul {
-    padding-left: 1.2em;
-    margin-top: 8px;
-  }
+  .timeline .stage .stage-desc b { color: var(--pink-2); }
 
-  section li { margin-bottom: 6px; }
-
-  .placeholder {
-    color: #c0c0c0;
-    font-style: italic;
-  }
-
+  /* ---------- Footer ---------- */
   footer {
     text-align: center;
-    padding: 30px 20px;
+    padding: 34px 20px;
     color: var(--text-gray);
     font-size: 0.85rem;
-    border-top: 1px solid var(--dongduk-pink-light);
+    border-top: 1px solid var(--pink-light);
   }
 
   footer .school {
-    color: var(--dongduk-pink-dark);
-    font-weight: 700;
+    background: linear-gradient(135deg, var(--pink-1), var(--pink-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+  }
+
+  @media (max-width: 640px) {
+    .flow-toc { gap: 0; }
+    .flow-toc a { width: 78px; font-size: 0.78rem; }
+    .flow-toc a .circle { width: 44px; height: 44px; }
+    header h1 { font-size: 2.1rem; }
   }
 </style>
 </head>
 <body>
 
 <header>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
   <span class="badge">DONGDUK WOMEN'S UNIVERSITY</span>
   <h1>바이브 코딩 2주차 실습</h1>
-  <p>실습 과정을 한눈에 확인할 수 있는 안내 페이지입니다</p>
+  <p>기획부터 배포까지, AI와 함께 완성한 웹사이트 제작 여정</p>
 </header>
 
 <nav class="top-nav">
-  <a href="blog.html">블로그 보기</a>
+  <a href="blog.html">✍️ 실습 블로그 보기</a>
 </nav>
 
 <main>
-  <nav class="toc">
-    <a href="#overview"><span class="num">1</span>실습 개요</a>
-    <a href="#prepare"><span class="num">2</span>사전 준비</a>
-    <a href="#content"><span class="num">3</span>실습 내용</a>
-    <a href="#summary"><span class="num">4</span>결과 정리</a>
+  <nav class="flow-toc">
+    <a href="#overview"><span class="circle">🎯</span>실습 개요</a>
+    <span class="arrow">➜</span>
+    <a href="#prepare"><span class="circle">🛠️</span>사전 준비</a>
+    <span class="arrow">➜</span>
+    <a href="#content"><span class="circle">🚀</span>실습 내용</a>
+    <span class="arrow">➜</span>
+    <a href="#summary"><span class="circle">🏁</span>결과 정리</a>
   </nav>
 
   <section id="overview">
-    <h2><span class="step">1</span>실습 개요</h2>
-    <p>바이브 코딩(Vibe Coding)은 AI 어시스턴트와 자연어로 대화하며 코드를 직접 작성하지 않고도 웹페이지와 프로그램을 완성해 나가는 실습 방식입니다. 2주차 실습에서는 Claude Code를 활용해 정적 웹사이트(메인 페이지 + 블로그)를 제작하고, Git/GitHub로 버전 관리 및 배포까지 진행합니다.</p>
+    <h2><span class="icon">🎯</span>실습 개요</h2>
+    <p>바이브 코딩(Vibe Coding)은 AI 어시스턴트와 자연어로 대화하며 코드를 직접 작성하지 않고도 웹페이지와 프로그램을 완성해 나가는 실습 방식입니다. 2주차 실습에서는 Claude Code를 활용해 정적 웹사이트(메인 페이지 + 블로그)를 기획하고, Git/GitHub로 버전 관리 및 배포까지 이어지는 전체 흐름을 경험합니다.</p>
   </section>
 
   <section id="prepare">
-    <h2><span class="step">2</span>사전 준비</h2>
-    <ul>
-      <li>GitHub 계정 및 원격 저장소(<code>vibe-week1</code>) 생성</li>
-      <li>Git 설치 및 로컬 저장소 연결</li>
-      <li>Claude Code(터미널 AI 어시스턴트) 설치</li>
-      <li>HTML/CSS에 대한 기초 이해</li>
+    <h2><span class="icon">🛠️</span>사전 준비</h2>
+    <p>아래 준비물이 갖춰져야 다음 단계인 <b style="color:var(--pink-2)">실습 내용</b>을 무리 없이 진행할 수 있습니다.</p>
+    <ul class="chip-list">
+      <li>GitHub 계정 &amp; 원격 저장소</li>
+      <li>Git 설치</li>
+      <li>Claude Code</li>
+      <li>HTML/CSS 기초 이해</li>
     </ul>
   </section>
 
   <section id="content">
-    <h2><span class="step">3</span>실습 내용</h2>
-    <ul>
-      <li>README.md 작성 및 실습 목차 정리</li>
-      <li>메인 페이지(index.html) 제작 — 동덕여자대학교 시그니처 핑크 톤 적용</li>
-      <li>블로그 페이지(blog.html) 제작 및 메인 페이지와 연동</li>
-      <li>Git으로 변경 사항 커밋 후 GitHub main 브랜치에 push</li>
-      <li>GitHub Pages를 활성화하여 실제 웹사이트로 배포</li>
-      <li>Claude Code 상태줄(statusLine)을 원하는 형태로 커스터마이징</li>
-    </ul>
+    <h2><span class="icon">🚀</span>실습 내용</h2>
+    <div class="link-note">사전 준비를 마쳤다면, 아래 순서대로 진행됩니다</div>
+    <div class="timeline">
+      <div class="stage">
+        <div class="stage-title">1. 기획 — README로 목차 잡기</div>
+        <div class="stage-desc"><b>README.md</b>를 작성해 실습 목차(개요·준비·내용·정리)를 먼저 정리하고, 전체 페이지 구조의 뼈대로 삼았습니다.</div>
+      </div>
+      <div class="stage">
+        <div class="stage-title">2. 제작 — 메인 페이지 &amp; 블로그 페이지</div>
+        <div class="stage-desc">README의 목차를 그대로 <b>index.html</b>의 골격으로 옮기고, 실습 기록을 남길 <b>blog.html</b>을 만들어 서로 연결했습니다. 동덕여자대학교 시그니처 핑크 톤을 전체 디자인에 적용했습니다.</div>
+      </div>
+      <div class="stage">
+        <div class="stage-title">3. 배포 — Git 커밋 &amp; GitHub Pages</div>
+        <div class="stage-desc">변경 사항을 커밋해 <b>main</b> 브랜치에 push하고, <b>GitHub Pages</b>를 켜서 코드를 실제 접속 가능한 웹사이트로 배포했습니다.</div>
+      </div>
+      <div class="stage">
+        <div class="stage-title">4. 마무리 — 환경 커스터마이징</div>
+        <div class="stage-desc">Claude Code의 상태줄(statusLine)을 원하는 형태로 설정하며 다음 실습을 위한 작업 환경을 정리했습니다.</div>
+      </div>
+    </div>
   </section>
 
   <section id="summary">
-    <h2><span class="step">4</span>결과 정리</h2>
-    <p>AI와의 대화만으로 기획 → 제작 → 배포까지 이어지는 웹 개발 전체 흐름을 경험했습니다. 완성된 결과물은 GitHub Pages를 통해 실제 웹사이트(<code>https://songdahee0905.github.io/vibe-week1/</code>)로 확인할 수 있으며, 앞으로 각 페이지의 콘텐츠를 계속 채워나갈 예정입니다.</p>
+    <h2><span class="icon">🏁</span>결과 정리</h2>
+    <p>AI와의 대화만으로 <b style="color:var(--pink-2)">기획 → 제작 → 배포</b>로 이어지는 웹 개발 전체 흐름을 경험했습니다. 완성된 결과물은 GitHub Pages를 통해 실제 웹사이트(<code>https://songdahee0905.github.io/vibe-week1/</code>)로 확인할 수 있습니다. 과정 중 겪었던 시행착오와 배운 점은 <a href="blog.html" style="color:var(--pink-2); font-weight:700;">블로그</a>에 자세히 기록했습니다.</p>
   </section>
 </main>
 

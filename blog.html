@@ -6,12 +6,15 @@
 <title>실습 블로그 · 바이브 코딩 2주차</title>
 <style>
   :root {
-    --dongduk-pink: #e6007e;
-    --dongduk-pink-dark: #b8005f;
-    --dongduk-pink-light: #ffe6f2;
-    --text-dark: #2b2b2b;
-    --text-gray: #6b6b6b;
-    --bg: #fffafc;
+    --pink-1: #ff4fb0;
+    --pink-2: #e6007e;
+    --pink-3: #b8005f;
+    --pink-4: #7a0040;
+    --pink-light: #ffe6f2;
+    --pink-glow: #ffd1ea;
+    --text-dark: #33121f;
+    --text-gray: #7a5a68;
+    --bg: #fff6fb;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,167 +23,255 @@
     font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
     background: var(--bg);
     color: var(--text-dark);
-    line-height: 1.6;
+    line-height: 1.7;
+    overflow-x: hidden;
   }
 
   header {
-    background: linear-gradient(135deg, var(--dongduk-pink) 0%, var(--dongduk-pink-dark) 100%);
-    color: #fff;
-    padding: 60px 20px 70px;
-    text-align: center;
     position: relative;
+    background: linear-gradient(120deg, var(--pink-1), var(--pink-2) 45%, var(--pink-3) 100%);
+    color: #fff;
+    padding: 80px 20px 110px;
+    text-align: center;
     overflow: hidden;
+  }
+
+  header .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.45;
+    animation: float 9s ease-in-out infinite;
+  }
+  header .blob.b1 { width: 220px; height: 220px; background: #fff; top: -60px; left: -60px; animation-delay: 0s; }
+  header .blob.b2 { width: 160px; height: 160px; background: var(--pink-glow); bottom: -40px; right: 5%; animation-delay: 2s; }
+  header .blob.b3 { width: 100px; height: 100px; background: #fff; top: 30%; right: 20%; animation-delay: 4s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-18px) scale(1.06); }
   }
 
   header::after {
     content: "";
     position: absolute;
-    bottom: -40px;
+    bottom: -1px;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 90px;
     background: var(--bg);
     border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   }
 
   .badge {
+    position: relative;
+    z-index: 1;
     display: inline-block;
-    background: rgba(255,255,255,0.2);
-    padding: 6px 16px;
+    background: rgba(255,255,255,0.22);
+    backdrop-filter: blur(4px);
+    padding: 7px 18px;
     border-radius: 999px;
     font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    margin-bottom: 16px;
+    letter-spacing: 0.08em;
+    margin-bottom: 18px;
+    border: 1px solid rgba(255,255,255,0.4);
   }
 
   header h1 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 14px;
+    text-shadow: 0 4px 24px rgba(122, 0, 64, 0.35);
   }
 
   header p {
+    position: relative;
+    z-index: 1;
     font-size: 1.05rem;
-    opacity: 0.92;
+    opacity: 0.95;
   }
 
   nav.top-nav {
     max-width: 900px;
     margin: 0 auto;
-    padding: 20px 24px 0;
+    padding: 22px 24px 0;
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
   }
 
   nav.top-nav a {
     text-decoration: none;
-    color: var(--dongduk-pink-dark);
+    color: #fff;
     font-weight: 700;
     font-size: 0.9rem;
-    padding: 8px 16px;
+    padding: 10px 22px;
     border-radius: 999px;
-    border: 1.5px solid var(--dongduk-pink-light);
-    background: #fff;
-    transition: background 0.15s ease;
+    background: linear-gradient(120deg, var(--pink-2), var(--pink-3));
+    box-shadow: 0 8px 20px rgba(230, 0, 126, 0.35);
+    transition: transform 0.15s ease;
   }
 
-  nav.top-nav a:hover {
-    background: var(--dongduk-pink-light);
-  }
+  nav.top-nav a:hover { transform: translateY(-2px); }
 
   main {
     max-width: 900px;
     margin: 0 auto;
-    padding: 20px 24px 80px;
+    padding: 40px 24px 90px;
   }
 
-  .post-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  /* ---------- Story flow line connecting posts ---------- */
+  .story-line {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .story-line::before {
+    content: "";
+    position: absolute;
+    left: 17px;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--pink-1), var(--pink-3));
+    border-radius: 3px;
   }
 
   .post-card {
-    background: #fff;
-    border-radius: 18px;
-    padding: 28px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-    border-left: 6px solid var(--dongduk-pink);
+    position: relative;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(6px);
+    border-radius: 22px;
+    padding: 30px 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(184, 0, 95, 0.09);
+    border: 1px solid var(--pink-light);
+  }
+
+  .post-card:last-child { margin-bottom: 0; }
+
+  .post-card::before {
+    content: attr(data-step);
+    position: absolute;
+    left: -40px;
+    top: 26px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink-1), var(--pink-3));
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 5px var(--bg), 0 6px 14px rgba(230,0,126,0.3);
   }
 
   .post-card .date {
     display: inline-block;
-    background: var(--dongduk-pink-light);
-    color: var(--dongduk-pink-dark);
-    font-size: 0.8rem;
-    font-weight: 700;
-    padding: 4px 12px;
+    background: var(--pink-light);
+    color: var(--pink-3);
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 4px 14px;
     border-radius: 999px;
     margin-bottom: 12px;
+    letter-spacing: 0.03em;
   }
 
   .post-card h2 {
-    font-size: 1.25rem;
-    color: var(--text-dark);
-    margin-bottom: 10px;
+    font-size: 1.28rem;
+    color: var(--pink-4);
+    margin-bottom: 14px;
   }
 
-  .post-card p {
-    color: var(--text-gray);
-    font-size: 0.95rem;
+  .post-card p { color: var(--text-gray); font-size: 0.96rem; margin-bottom: 10px; }
+  .post-card p:last-child { margin-bottom: 0; }
+
+  .post-card .label {
+    font-weight: 800;
+    color: var(--pink-2);
   }
 
-  .post-card .placeholder {
-    color: #c0c0c0;
-    font-style: italic;
+  .post-card .trouble {
+    background: linear-gradient(120deg, #fff0f7, #ffe6f2);
+    border-left: 4px solid var(--pink-2);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 14px;
   }
+
+  .post-card .trouble .label::before { content: "⚠️ "; }
 
   footer {
     text-align: center;
-    padding: 30px 20px;
+    padding: 34px 20px;
     color: var(--text-gray);
     font-size: 0.85rem;
-    border-top: 1px solid var(--dongduk-pink-light);
+    border-top: 1px solid var(--pink-light);
   }
 
   footer .school {
-    color: var(--dongduk-pink-dark);
-    font-weight: 700;
+    background: linear-gradient(135deg, var(--pink-1), var(--pink-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+  }
+
+  @media (max-width: 640px) {
+    .story-line { padding-left: 28px; }
+    .story-line::before { left: 10px; }
+    .post-card::before { left: -28px; width: 26px; height: 26px; font-size: 0.8rem; top: 24px; }
+    header h1 { font-size: 2rem; }
   }
 </style>
 </head>
 <body>
 
 <header>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
   <span class="badge">DONGDUK WOMEN'S UNIVERSITY</span>
   <h1>실습 블로그</h1>
-  <p>바이브 코딩 2주차 실습 과정과 기록을 남기는 공간입니다</p>
+  <p>실습 과정과 함께 겪었던 시행착오를 순서대로 기록합니다</p>
 </header>
 
 <nav class="top-nav">
-  <a href="index.html">메인으로</a>
+  <a href="index.html">🏠 메인으로</a>
 </nav>
 
 <main>
-  <div class="post-list">
+  <div class="story-line">
 
-    <article class="post-card">
-      <span class="date">YYYY.MM.DD</span>
-      <h2 class="placeholder">글 제목을 입력하세요</h2>
-      <p class="placeholder">이곳에 실습 첫째 날 기록이나 배운 내용을 작성하세요.</p>
+    <article class="post-card" data-step="1">
+      <span class="date">STEP 1</span>
+      <h2>메인 페이지 기획, 목차부터 잡았다</h2>
+      <p><span class="label">진행 과정 —</span> 가장 먼저 README.md에 실습 목차(개요·사전 준비·실습 내용·결과 정리)를 정리했고, 이 구조를 그대로 index.html의 골격으로 옮겨 만들었습니다. 이후 동덕여자대학교의 시그니처 핑크 톤을 색상 테마로 정해 전체 페이지에 일관되게 적용했습니다.</p>
+      <div class="trouble">
+        <p><span class="label">어려웠던 점</span> — 목차를 "빈 골격" 형태로 바꿔달라고 했을 때, 어떤 구조를 원하는 건지 서로 의도가 정확히 맞지 않아 한 번에 반영되지 않았습니다. 처음 요청을 구체적으로 표현하는 것이 AI와의 협업에서 생각보다 중요하다는 걸 느꼈습니다.</p>
+      </div>
     </article>
 
-    <article class="post-card">
-      <span class="date">YYYY.MM.DD</span>
-      <h2 class="placeholder">글 제목을 입력하세요</h2>
-      <p class="placeholder">이곳에 실습 진행 중 겪은 시행착오와 해결 과정을 작성하세요.</p>
+    <article class="post-card" data-step="2">
+      <span class="date">STEP 2</span>
+      <h2>Git 충돌, 그리고 첫 번째 push 실패</h2>
+      <p><span class="label">진행 과정 —</span> README.md를 커밋한 뒤 main 브랜치에 바로 push를 시도했는데, 원격 저장소(origin/main)에 로컬에는 없는 커밋(CLAUDE.md 수정)이 먼저 올라가 있어 push가 거부됐습니다. origin의 변경 내용을 fetch로 받아온 뒤, 서로 다른 파일을 건드린 것을 확인하고 merge로 안전하게 합친 후 다시 push해서 해결했습니다.</p>
+      <div class="trouble">
+        <p><span class="label">어려웠던 점</span> — "non-fast-forward" 에러를 처음 마주쳤을 때 당황스러웠습니다. 강제로 덮어쓰는 대신, 원격 변경 내용을 먼저 확인하고 충돌 여부를 점검한 뒤 병합하는 순서를 지켜야 안전하다는 걸 배웠습니다.</p>
+      </div>
     </article>
 
-    <article class="post-card">
-      <span class="date">YYYY.MM.DD</span>
-      <h2 class="placeholder">글 제목을 입력하세요</h2>
-      <p class="placeholder">이곳에 실습을 마친 후 느낀 점과 결과를 작성하세요.</p>
+    <article class="post-card" data-step="3">
+      <span class="date">STEP 3</span>
+      <h2>코드는 올렸는데, 사이트는 왜 없지?</h2>
+      <p><span class="label">진행 과정 —</span> index.html과 blog.html을 만들어 GitHub에 push까지 마쳤는데, 실제 웹사이트 주소로 들어가면 아무것도 뜨지 않았습니다. 알고 보니 GitHub 저장소에 파일이 올라가 있는 것과, 그 파일이 실제 인터넷 주소로 열리는 "사이트"가 되는 것은 별개였습니다. 저장소 Settings → Pages에서 배포 브랜치를 main으로 지정하고 나서야 <code>https://songdahee0905.github.io/vibe-week1/</code> 주소로 정상 접속할 수 있었습니다.</p>
+      <div class="trouble">
+        <p><span class="label">어려웠던 점</span> — "커밋하고 푸시했으니 사이트가 만들어졌겠지"라고 생각했던 게 착각이었습니다. 저장소(코드 저장 공간)와 배포(실제 서비스되는 웹페이지)는 다른 단계라는 걸 직접 헤매면서 이해하게 됐습니다.</p>
+      </div>
     </article>
 
   </div>
