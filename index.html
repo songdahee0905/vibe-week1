@@ -6,15 +6,15 @@
 <title>바이브 코딩 2주차 실습</title>
 <style>
   :root {
-    --pink-1: #ff4fb0;
-    --pink-2: #e6007e;
-    --pink-3: #b8005f;
-    --pink-4: #7a0040;
-    --pink-light: #ffe6f2;
-    --pink-glow: #ffd1ea;
-    --text-dark: #33121f;
-    --text-gray: #7a5a68;
-    --bg: #fff6fb;
+    --pink-1: #d81e4f;
+    --pink-2: #9c1042;
+    --pink-3: #6b0b2e;
+    --pink-4: #3d0619;
+    --pink-light: #f7dde3;
+    --pink-glow: #e79bab;
+    --text-dark: #301017;
+    --text-gray: #7a5a5f;
+    --bg: #fff8f7;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -321,7 +321,7 @@
 </header>
 
 <nav class="top-nav">
-  <a href="blog.html">✍️ 실습 블로그 보기</a>
+  <a href="blog.html">✍️ 송다희의 바이브 코딩 블로그</a>
 </nav>
 
 <main>
@@ -331,6 +331,8 @@
     <a href="#prepare"><span class="circle">🛠️</span>사전 준비</a>
     <span class="arrow">➜</span>
     <a href="#content"><span class="circle">🚀</span>실습 내용</a>
+    <span class="arrow">➜</span>
+    <a href="#stack"><span class="circle">🧩</span>사용 도구</a>
     <span class="arrow">➜</span>
     <a href="#summary"><span class="circle">🏁</span>결과 정리</a>
   </nav>
@@ -370,6 +372,29 @@
       <div class="stage">
         <div class="stage-title">4. 마무리 — 환경 커스터마이징</div>
         <div class="stage-desc">Claude Code의 상태줄(statusLine)을 원하는 형태로 설정하며 다음 실습을 위한 작업 환경을 정리했습니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <h2><span class="icon">🧩</span>사용 도구</h2>
+    <div class="link-note">각 도구는 아래 순서로 서로 연결되어 하나의 배포 파이프라인을 이룹니다</div>
+    <div class="timeline">
+      <div class="stage">
+        <div class="stage-title">1. Claude Code — 코드 작성</div>
+        <div class="stage-desc">터미널에서 자연어로 요청하면 <b>Claude Code</b>가 HTML/CSS 파일을 직접 작성·수정합니다. 이번 실습의 모든 페이지(index.html, blog.html)가 이 방식으로 만들어졌습니다.</div>
+      </div>
+      <div class="stage">
+        <div class="stage-title">2. Git — 로컬 버전 관리</div>
+        <div class="stage-desc">Claude Code가 만든 변경 사항을 <b>Git</b>이 커밋 단위로 기록합니다. 언제든 이전 상태로 되돌릴 수 있는 기준점이 됩니다.</div>
+      </div>
+      <div class="stage">
+        <div class="stage-title">3. GitHub — 원격 저장소</div>
+        <div class="stage-desc">로컬 Git 커밋을 <code>git push</code>로 <b>GitHub</b> 원격 저장소(main 브랜치)에 업로드해 코드를 안전하게 백업하고 공유합니다.</div>
+      </div>
+      <div class="stage">
+        <div class="stage-title">4. GitHub Pages — 실제 배포</div>
+        <div class="stage-desc">GitHub 저장소 설정에서 <b>Pages</b> 기능을 켜면, main 브랜치의 정적 파일이 자동으로 <code>https://songdahee0905.github.io/vibe-week1/</code> 주소의 실제 웹사이트로 변환되어 서비스됩니다.</div>
       </div>
     </div>
   </section>
